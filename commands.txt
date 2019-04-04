@@ -1,0 +1,171 @@
+theorem conj_commut [ A /\ B ] => B /\ A
+conj_intr
+conj_elim_2{A}
+assumption(Cab)
+conj_elim_1{B}
+assumption(Cab)
+list_rules
+theorem disj_commut [ A \/ B ] => B \/ A
+disj_elim{A, B}
+impl_intr(a)
+disj_intr_2
+assumption(a)
+disj_intr_1
+impl_intr(b)
+disj_intr_1
+assumption(b)
+assumption(Dab)
+theorem conj_assoc [A /\ (B /\ C)] => (A /\ B) /\ C
+conj_intr
+conj_intr
+conj_elim_1{B /\ C}
+assumption(CaCbc)
+conj_elim_1{C}
+conj_elim_2{A}
+assumption(CaCbc)
+conj_elim_2{B}
+conj_elim_2{A}
+assumption(CaCb)
+assumption(CaCbc)
+theorem disj_assoc [ A \/ (B \/ C) ] => (A \/ B) \/ C
+disj_elim{A, B \/ C}
+impl_intr(a)
+disj_intr_1
+disj_intr_1
+assumption(a)
+impl_intr(Cbc)
+disj_elim{B, C}
+impl_intr(b)
+disj_intr_1
+disj_intr_2
+assumption(b)
+impl_intr(c)
+disj_intr_2
+assumption(c)
+assumption(Cbc)
+assumption(DaDbc)
+theorem k [] => (A => (B => A))
+impl_intr(a)
+impl_intr(b)
+assumption(a)
+list_rules
+undo
+undo
+undo
+undo
+list_theorems
+list_rules
+theorem k [ A ] => B => A
+impl_intr(b)
+assumption(a)
+list_rules
+theorem s [ A => (B => C) ] => (A => B) => (A => C)
+impl_intr(Iab)
+impl_intr(a)
+impl_elim{B}
+impl_elim{A}
+assumption(IaIbc)
+assumption(a)
+impl_elim{A}
+assumption(Iab)
+assumption(a)
+theorem impl_distr_over_disj [A => B; A => C] => A => (B /\ C)
+impl_intr(a)
+conj_intr
+impl_elim{A}
+assumption(Iab)
+assumption(a)
+impl_elim{A}
+assumption(Iac)
+assumption(a)
+list_rules
+theorem wrongPremiseImpliesAnything [ Neg[A] ] => (A => B)
+impl_intr(a)
+explosion
+impl_elim{A}
+assumption(IaF)
+assumption(a)
+theorem doubleNeg [A] => Neg[Neg[A]]
+impl_intr(IaF)
+impl_elim{A}
+assumption(IaF)
+assumption(a)
+theorem tripleNeg [ Neg[Neg[Neg[A]]] ] => Neg[A]
+impl_intr(a)
+impl_elim{Neg[Neg[A]]}
+assumption(IIIaFFF)
+list_rules
+doubleNeg
+assumption(a)
+theorem hypotSyllog [A => B ; B => C] => (A => C)
+impl_intr(a)
+impl_elim{B}
+assumption(Ibc)
+impl_elim{A}
+assumption(Iab)
+assumption(a)
+theorem disjSyllog [ A \/ B ; Neg[A] ] => Neg[Neg[B]]
+impl_intr(IbF)
+disj_elim{A, B}
+assumption(IaF)
+assumption(IbF)
+assumption(Dab)
+list_rules
+modusPonens [A => B; A] => B
+theorem modusPonens [A => B; A] => B
+impl_elim{A}
+assumption(Iab)
+assumption(a)
+theorem modusTollens [ A => B; Neg[B] ] => Neg[A]
+list_rules
+hypotSyllog{B}
+assumption(Iab)
+assumption(IbF)
+theorem constructiveDilemma [ A \/ B; A => C; B => D ] => C \/ D
+disj_elim{A, B}
+hypotSyllog{C}
+assumption(Iac)
+impl_intr(c)
+disj_intr_1
+assumption(c)
+hypotSyllog{D}
+assumption(Ibd)
+impl_intr(d)
+disj_intr_2
+assumption(d)
+assumption(Dab)
+theorem destructiveDilemma [ A => C; B => D; Neg[C \/ D] ] => Neg[A \/ B]
+impl_intr(Dab)
+impl_elim{C \/ D}
+assumption(IDcdF)
+disj_elim{A, B}
+impl_intr(a)
+disj_intr_1
+impl_elim{A}
+assumption(Iac)
+assumption(a)
+impl_intr(b)
+disj_intr_2
+impl_elim{B}
+assumption(Ibd)
+assumption(b)
+assumption(Dab)
+theorem deMorgan [ Neg[A]; Neg[B] ] => Neg[A \/ B]
+impl_intr(Cab)
+disj_elim{A,B}
+assumption(IaF)
+assumption(IbF)
+assumption(Cab)
+theorem deMorgan_2 [ Neg[A \/ B] ] => Neg[A] /\ Neg[B]
+conj_intr
+hypotSyllog{A \/ B}
+impl_intr(a)
+disj_intr_1
+assumption(a)
+assumption(IDabF)
+hypotSyllog{A \/ B}
+impl_intr(b)
+disj_intr_2
+assumption(b)
+assumption(IDabF)
+exit
